@@ -13,6 +13,7 @@ class << RSpec::OpenAPI::RecordBuilder = Object.new
       request = context.request
       response = context.response
     end
+    binding.pry
 
     # Generate `path` and `summary` in a framework-friendly manner when possible
     if rails?
@@ -60,6 +61,7 @@ class << RSpec::OpenAPI::RecordBuilder = Object.new
 
   # @param [ActionDispatch::Request] request
   def find_rails_route(request, app: Rails.application, fix_path: true)
+    binding.pry
     # Reverse the destructive modification by Rails https://github.com/rails/rails/blob/v6.0.3.4/actionpack/lib/action_dispatch/journey/router.rb#L33-L41
     if fix_path && !request.script_name.empty?
       request = request.dup
